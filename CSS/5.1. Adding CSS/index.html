@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Adding CSS</title>
+
+  <link rel="stylesheet" href="div_external_button.css">
+
+  <style>
+    .Internal{
+      background-color: rgb(14, 177, 14);
+      color: white;
+      height: 35px;
+      width: 150px;
+      border-radius: 5px;
+      font-family: arial;
+      text-decoration: none;
+      display: flex;
+      font-size: 18px;
+      justify-content: center;
+      align-items: center;
+    }
+    .link_container{
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+  
+  </style>
+</head>
+
+<body>
+  <h1>Three Methods of Adding CSS</h1>
+  <!-- Create 3 Links to The 3 Webpages: inline, internal and external -->
+   <div class="link_container">
+      <a href="inline.html" 
+        style="
+          background-color: rgb(240, 42, 45); 
+          color: white; 
+          height: 35px; 
+          width: 150px; 
+          font-size: 18px; 
+          border-radius: 5px; 
+          font-family: arial;          
+          text-decoration:none; 
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          ">Inline Method
+        </a>
+      <a href="internal.html" class="Internal">Internal Method</a> 
+      <a href="external.html" class="External">External Method</a>
+   </div>
+
+</body>
+
+</html>

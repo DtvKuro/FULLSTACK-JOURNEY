@@ -1,0 +1,15 @@
+.External
+{
+  background-color:  rgb(77, 77, 214);
+  color: white;
+  height: 35px;
+  width: 150px;
+  border-radius: 5px;
+  font-family: arial;
+  text-decoration: none;
+  display: flex;
+  font-size: 18px;
+
+  justify-content: center;
+  align-items: center;
+}
