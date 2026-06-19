@@ -49,6 +49,22 @@ you now store the data when you enter it.
 
 alert("you are a " + Race);
 
+    TEMPLATE LITERALS (BACKTICKS)
+
+    `` is the key under Esc. lets you drop variables into a string using ${}.
+    cleaner than gluing with +.
+
+    var port = 3000;
+
+    console.log(`Server running on port ${port}.`);  // Server running on port 3000.
+    console.log("Server on port " + port + ".");     // old way, messier
+
+    ${} runs any expression inside, not just variables.
+    `Total: ${5 + 3}`   // Total: 8
+
+    ${} only works in backticks. in "" or '' it prints as plain text.
+    backticks also allow multi-line strings and apostrophes (What's) without breaking.
+
     WORD COUNTING
 
     var name = "Cy";
