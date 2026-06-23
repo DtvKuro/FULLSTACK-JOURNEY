@@ -24,3 +24,21 @@ ctrl + c - if you want to stop anything running in terminal or you wanna leave e
 Native Modules = commands prebundled with nodejs
 
 file system = allows js to be more than just browser by allowing node to access files from your server/pc.
+
+NPM (Node Package Manager)
+
+manages the packages/dependencies your project needs.
+
+npm init - initialises a new project and creates a package.json by asking you questions.
+npm init -y - initialises a new project and creates a package.json with all the default values (skips the questions).
+
+npm i <package-name> - installs a package and adds it to dependencies (e.g. "npm i express").
+npm install <package-name> - same as above, "install" is the full word for "i".
+npm i - installs all packages listed in package.json (use after cloning a project).
+npm i <package-name> -D - installs a package as a dev dependency (only needed during development).
+npm i <package-name>@<version> - installs a specific version (e.g. "npm i express@4.18.2").
+npm i -g <package-name> - installs a package globally (available system-wide, not just this project).
+
+npm uninstall <package-name> - removes a package and takes it out of package.json.
+npm un <package-name> - shorthand for uninstall.
+npm uninstall -g <package-name> - removes a globally installed package.

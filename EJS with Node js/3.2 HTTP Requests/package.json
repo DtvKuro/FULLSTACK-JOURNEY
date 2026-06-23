@@ -1,0 +1,16 @@
+{
+  "name": "3.2-http-requests.",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "Cy",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
