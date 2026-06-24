@@ -303,3 +303,48 @@ next()
 }
 
 app.use(logger);
+
+WHY MIDDLEWARE NEEDS 3 PARAMETERS (req, res, next)
+
+Middleware functions always take 3 inputs: (req, res, next).
+This is NOT just convention — Express actually checks how many parameters your function has to know what it is.
+
+- 2 params (req, res) = route handler
+- 3 params (req, res, next) = middleware
+- 4 params (err, req, res, next) = error-handling middleware
+
+What each one is for:
+
+req - the request object. Lets you read what the user sent (URL, method, body, headers, etc.)
+
+res - the response object. Middleware sometimes needs to END the request early.
+For example, if a user isnt authorized, the middleware can send back a 401 and stop the chain right there.
+
+function checkAuth(req, res, next) {
+if (!req.headers.authorization) {
+res.status(401).send("Not allowed"); // stops here, never reaches the route
+return;
+}
+next();
+}
+
+Without res, middleware couldnt reject requests, send errors, or redirect users.
+
+next - a callback function that Express gives you. You didnt create it, Express did.
+When you call next(), it tells Express "im done, pass the request to the next middleware or route."
+If you dont call next(), the request hangs forever and eventually times out.
+
+The key thing: next is a PARAMETER (input) because Express injects it into your function when it calls your middleware.
+Express internally does something like: yourMiddleware(req, res, functionThatRunsTheNextMiddleware);
+That third argument is a function Express built that knows which middleware comes next in the chain.
+
+Think of middleware as a chain of checkpoints:
+
+Request -> [Logger] -> [Auth Check] -> [Rate Limiter] -> [Route Handler] -> Response
+
+At each checkpoint, the middleware can either:
+
+1. Call next() - pass to the next checkpoint
+2. Use res to respond - stop the chain, send something back
+
+The 3 parameter signature is ONLY for middleware. Regular route handlers just use (req, res) since they are the end of the chain.
