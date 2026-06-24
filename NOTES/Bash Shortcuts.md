@@ -5,7 +5,9 @@
 |-----------|---------------------------------------|
 | `ns-lis`  | `ns LISTENING`                        |
 | `ns-es`   | `ns ESTABLISHED`                      |
-| `cl`      | `claude`                              |
+| `c`       | `clear`                               |
+| `cl`      | `clear`                               |
+| `cla`     | `claude`                              |
 | `cl-skp`  | `claude --dangerously-skip-permissions` |
 
 ## Functions

@@ -14,19 +14,19 @@ app.get("/", (req, res) => {
 });
 
 app.post("/register", (req, res) => {
-  //Do something with the data
+  //You Are Sending a DATA.
   res.sendStatus(201);
 });
 
-app.put("/user/angela", (req, res) => {
+app.put("/user/angela", (req, res) => { //Put will replace all of data in angela rather than just updating the outdated one
+  res.sendStatus(200);                  //So you have to fetch data first, and have to put all updated info before PUT
+});
+
+app.patch("/user/angela", (req, res) => { // You can change a single thing in the data.
   res.sendStatus(200);
 });
 
-app.patch("/user/angela", (req, res) => {
-  res.sendStatus(200);
-});
-
-app.delete("/user/angela", (req, res) => {
+app.delete("/user/angela", (req, res) => { //It will delete the data.
   //Deleting
   res.sendStatus(200);
 });
