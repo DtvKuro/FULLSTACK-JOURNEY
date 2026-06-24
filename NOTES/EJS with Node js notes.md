@@ -94,24 +94,24 @@ You can use POSTMAN.
 Postman Practice - Testing Different Routes:
 
 app.get("/", (req, res) => {
-  res.send("<h1>Home Page</h1>");
+res.send("<h1>Home Page</h1>");
 });
 
 app.post("/register", (req, res) => {
-  //You Are Sending a DATA.
-  res.sendStatus(201); //201 means resource was created
+//You Are Sending a DATA.
+res.sendStatus(201); //201 means resource was created
 });
 
 app.put("/user/angela", (req, res) => { //Put will replace all of data in angela rather than just updating the outdated one
-  res.sendStatus(200);                  //So you have to fetch data first, and have to put all updated info before PUT
+res.sendStatus(200); //So you have to fetch data first, and have to put all updated info before PUT
 });
 
 app.patch("/user/angela", (req, res) => { // You can change a single thing in the data.
-  res.sendStatus(200);
+res.sendStatus(200);
 });
 
 app.delete("/user/angela", (req, res) => { //It will delete the data.
-  res.sendStatus(200);
+res.sendStatus(200);
 });
 
 sendStatus(code) - sends just the HTTP status code as the response (e.g. 200, 201).
@@ -153,17 +153,85 @@ Getting the root directory (important for cloud projects, not just local):
 
 import { dirname } from "path";
 import { fileURLToPath } from "url";
-const __dirname = dirname(fileURLToPath(import.meta.url)); //converts the file URL to an actual directory path
+const \_\_dirname = dirname(fileURLToPath(import.meta.url)); //converts the file URL to an actual directory path
 
 res.sendFile vs res.send:
 
 res.send("text") - sends text/HTML as the response.
-res.sendFile(__dirname + "/public/index.html") - sends an actual file from the directory as the response.
+res.sendFile(\_\_dirname + "/public/index.html") - sends an actual file from the directory as the response.
 
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/public/index.html");
+res.sendFile(\_\_dirname + "/public/index.html");
 });
 
 app.post("/submit", (req, res) => {
-  console.log(req.body); //req.body contains the data sent from the form (parsed by body-parser/urlencoded middleware)
+console.log(req.body); //req.body contains the data sent from the form (parsed by body-parser/urlencoded middleware)
 });
+
+Middleware has
+
+Pre-processing = body-parsing(integrated in express.)
+Auth
+Logging = morgan(package)
+Error
+
+Morgan is used to log the route and get info like Get, or status code or OS or browser and many more.
+It is used like this,
+
+import morgan from "morgan"; //Importing Morgan
+
+Predefined log formats
+
+Like in the example above, you have five predefined formats that you can use in order to easily get the info you need. They are:
+
+“combined”: which gives you the Apache standard combined format for your logs.
+“common”: referencing the Apache standard common format.
+“dev”: A color-coded (by request status) log format.
+“short”: Shorter than the default format, including just the few items you’d expect a request logline would have.
+“tiny”: Even shorter, just the response time and a few extra items.
+
+How to use the log formats
+
+Import morgan from "morgan";
+const app = express();
+
+app.use(morgan.("combined."));
+
+Format      Remote Addr   User   Timestamp   Method/URL   Status   Size   Referrer   User Agent   Response Time
+combined    yes           yes    yes         yes          yes      yes    yes        yes          no
+common      yes           yes    yes         yes          yes      yes    no         no           no
+dev         no            no     no          yes          yes      yes    no         no           yes
+short       yes           no     no          yes          yes      yes    no         no           yes
+tiny        no            no     no          yes          yes      yes    no         no           yes
+
+combined - Standard Apache combined log output.
+
+:remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent"
+# will output
+::1 - - [27/Nov/2024:06:21:42 +0000] "GET /combined HTTP/1.1" 200 2 "-" "curl/8.7.1"
+
+common - Standard Apache common log output.
+
+:remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length]
+# will output
+::1 - - [27/Nov/2024:06:21:46 +0000] "GET /common HTTP/1.1" 200 2
+
+dev - Concise output colored by response status for development use. The :status token will be colored green for success codes, red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for information codes.
+
+:method :url :status :response-time ms - :res[content-length]
+# will output
+GET /dev 200 0.224 ms - 2
+
+short - Shorter than default, also including response time.
+
+:remote-addr :remote-user :method :url HTTP/:http-version :status :res[content-length] - :response-time ms
+# will output
+::1 - GET /short HTTP/1.1 200 2 - 0.283 ms
+
+tiny - The minimal output.
+
+:method :url :status :res[content-length] - :response-time ms
+# will output
+GET /tiny 200 2 - 0.188 ms
+
+CUSTOM MIDDLEWARE

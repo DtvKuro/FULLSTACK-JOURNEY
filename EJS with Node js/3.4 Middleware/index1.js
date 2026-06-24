@@ -7,7 +7,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url)); //This is the convers
 const app = express();
 const port = 3000;
 
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true })); // This is needed so the request can be carried as a body, allowing the data to be hold.
 
 app.get("/", (req, res) => {
   console.log(__dirname + "/public/index.html")
