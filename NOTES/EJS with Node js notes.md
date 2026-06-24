@@ -197,41 +197,109 @@ const app = express();
 
 app.use(morgan.("combined."));
 
-Format      Remote Addr   User   Timestamp   Method/URL   Status   Size   Referrer   User Agent   Response Time
-combined    yes           yes    yes         yes          yes      yes    yes        yes          no
-common      yes           yes    yes         yes          yes      yes    no         no           no
-dev         no            no     no          yes          yes      yes    no         no           yes
-short       yes           no     no          yes          yes      yes    no         no           yes
-tiny        no            no     no          yes          yes      yes    no         no           yes
+Format Remote Addr User Timestamp Method/URL Status Size Referrer User Agent Response Time
+combined yes yes yes yes yes yes yes yes no
+common yes yes yes yes yes yes no no no
+dev no no no yes yes yes no no yes
+short yes no no yes yes yes no no yes
+tiny no no no yes yes yes no no yes
 
 combined - Standard Apache combined log output.
 
 :remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent"
+
 # will output
+
 ::1 - - [27/Nov/2024:06:21:42 +0000] "GET /combined HTTP/1.1" 200 2 "-" "curl/8.7.1"
 
 common - Standard Apache common log output.
 
 :remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length]
+
 # will output
+
 ::1 - - [27/Nov/2024:06:21:46 +0000] "GET /common HTTP/1.1" 200 2
 
 dev - Concise output colored by response status for development use. The :status token will be colored green for success codes, red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for information codes.
 
 :method :url :status :response-time ms - :res[content-length]
+
 # will output
+
 GET /dev 200 0.224 ms - 2
 
 short - Shorter than default, also including response time.
 
 :remote-addr :remote-user :method :url HTTP/:http-version :status :res[content-length] - :response-time ms
+
 # will output
+
 ::1 - GET /short HTTP/1.1 200 2 - 0.283 ms
 
 tiny - The minimal output.
 
 :method :url :status :res[content-length] - :response-time ms
+
 # will output
+
 GET /tiny 200 2 - 0.188 ms
 
+MIDDLEWARE ORDER MATTERS
+
+Express runs middleware in the order you write them, top to bottom.
+
+The proper structure is:
+
+1. app.use() - global middleware (body-parser, morgan, auth, etc.)
+2. app.get() / app.post() / app.put() / app.patch() / app.delete() - route handlers
+3. app.listen() - always last, starts the server
+
+Example:
+
+app.use(express.urlencoded({ extended: true })); // 1st - parse the body
+app.use(morgan("tiny")); // 2nd - log the request
+app.use(authMiddleware); // 3rd - check if user is allowed
+
+app.get("/", (req, res) => { // 4th - handle the route
+res.send("Home");
+});
+
+app.listen(3000); // Last - start server
+
+Why order matters:
+
+- Express processes middleware top to bottom using next().
+- If auth middleware is placed AFTER a route, that route runs without auth check = security risk.
+- If body-parser is placed AFTER a POST route, req.body will be undefined because the body wasnt parsed yet.
+- If morgan is placed AFTER routes, it wont log requests that were already handled.
+
+Think of it like a checklist before the request reaches the route:
+parse body -> log it -> check auth -> THEN handle the route.
+
+Morgan (logging) goes near the top, not the bottom.
+Even though it tracks response time, it works by starting a timer when the request enters and stopping when the response is sent. So it needs to be placed early to catch everything.
+
 CUSTOM MIDDLEWARE
+
+CUSTOM MIDDLEWARE
+
+we use app.use() method to specify a middleware
+
+app.use((req, res, next) => { //Inside the app.use we can pass a function that has req, res, and next.
+console.log("Request Method: ". req.method);
+next() //The next function determines when we should move on from the middleware into the next function.
+});
+
+This is how you make custom logger.
+by making a function then console logging it.
+then calling next() function to move on.
+
+If you dont put the next function then the website will never reach the next code that is below.
+
+var logger = function(req, res, next){
+console.log("Request Method: " + req.method);
+console.log("Request URL: localhost:" + port + req.url);
+next()
+}
+
+app.use(logger);
