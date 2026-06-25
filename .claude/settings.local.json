@@ -1,8 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(# Move remaining CSS folders one by one\ncp -r \"CSS/11.3 TinDog Project\" \"Frontend/CSS/11.3-TinDog-Project\" && git rm -rf \"CSS/11.3 TinDog Project\"\ncp -r \"CSS/5.1. Adding CSS\" \"Frontend/CSS/5.1-Adding-CSS\" && git rm -rf \"CSS/5.1. Adding CSS\"\ncp -r \"CSS/5.4+Color+Vocab+Project\" \"Frontend/CSS/5.4-Color-Vocab-Project\" && git rm -rf \"CSS/5.4+Color+Vocab+Project\"\ncp -r \"CSS/6.3+CSS+Box+Model\" \"Frontend/CSS/6.3-CSS-Box-Model\" && git rm -rf \"CSS/6.3+CSS+Box+Model\"\ncp -r \"CSS/6.4 Motivation Meme Project\" \"Frontend/CSS/6.4-Motivation-Meme-Project\" && git rm -rf \"CSS/6.4 Motivation Meme Project\"\ncp -r \"CSS/7.0+CSS+Cascade\" \"Frontend/CSS/7.0-CSS-Cascade\" && git rm -rf \"CSS/7.0+CSS+Cascade\"\ncp -r \"CSS/8.4 Web Design Agency Project\" \"Frontend/CSS/8.4-Web-Design-Agency-Project\" && git rm -rf \"CSS/8.4 Web Design Agency Project\"\ncp -r \"CSS/web-design-project\" \"Frontend/CSS/web-design-project\" && git rm -rf \"CSS/web-design-project\"\ngit mv \"CSS/Level of Importance.jpg\" \"Frontend/CSS/Level-of-Importance.jpg\")",
-      "Bash(# Permission issues with CAPSTONE_2 and FOOTSITE, submodule issue with Simon Completed\n# Use cp + git rm approach\ncp -r \"PROJECTS/CAPSTONE_2\" \"Projects/Capstone-2\" && git rm -rf \"PROJECTS/CAPSTONE_2\"\ncp -r \"PROJECTS/FOOTSITE\" \"Projects/Footsite\" && git rm -rf \"PROJECTS/FOOTSITE\"\n\n# Simon Completed may be a submodule\ncp -r \"PROJECTS/Simon Game Challenge Completed\" \"Projects/Simon-Game/Completed\"\nrm -rf \"PROJECTS/Simon Game Challenge Completed\"\n\nrm -rf PROJECTS/)"
-    ]
-  }
-}
