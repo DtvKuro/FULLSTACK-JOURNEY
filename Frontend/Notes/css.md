@@ -1,4 +1,3 @@
-
 Cascading Style Sheets
 
 //Style Sheet Language
@@ -7,11 +6,9 @@ CSS
 SAS
 LESS
 
- 
-Hakon Wium Lie 
+Hakon Wium Lie
 
-Father of Cascading Style Sheets  
-
+Father of Cascading Style Sheets
 
       Inline (For single element or for testing)
 
@@ -37,17 +34,16 @@ in head of html
 
 <link rel="stylesheet" href="style.css">
 
-
 In css file
 
-button 
+button
 {
-  color: blue; 
+color: blue;
 }
 
 CSS SELECTOR
 
-  ELEMENT SELECTOR
+ELEMENT SELECTOR
 
 <h2>red</h2>
 <h2>blue</h2>
@@ -58,58 +54,52 @@ h2
   color: red;
 }
 
-
 //Theyre all red since h2 is "Element Selector" You select all h2.
 
-  CLASS SELECTOR(Multiple Elements)
-
+CLASS SELECTOR(Multiple Elements)
 
 <h2 class:"red-text">red</h2>
 <h2>blue</h2>
 <h2>green</h2>
 
 .red-tex{
-  color: red;
+color: red;
 }
 
-
-  ID SELECTOR (only for one element)
+ID SELECTOR (only for one element)
 
 <h2 id="Main">red</h2>
 <h2>blue</h2>
 <h2>green</h2>
 
-
 #main{
-  color:red;
+color:red;
 }
 
-  ATTRIBUTE SELECTOR
+ATTRIBUTE SELECTOR
 
 P[draggable]{ //its gonna edit all paragraph that is draggable.
-  color : red;
+color : red;
 }
 
 P[draggable="false"]{ //Same concept but now it edits things that arent draggable.
-  color: red;
-} 
-
-  UNIVERSAL SELECTOR
-
-It select all
-
-*{
 color: red;
 }
 
+UNIVERSAL SELECTOR
 
+It select all
+
+\*{
+color: red;
+}
 
 RESPONSIVE WEBSITES
 
 1. MEDIA QUERY
 
 @media (max-width: 600px) {
- // CSS for screens below 600px 
+// CSS for screens below 600px
 }
 
 2. CSS Grid
@@ -121,21 +111,21 @@ grid-template-rows: 100px 200px 200px;
 gap: 30px;
 
 .first{
-  grid-column: span 2; //This item will occupy 2 columns 
+grid-column: span 2; //This item will occupy 2 columns
 }
 
 3. CSS Flexbox
 
 .flex-container{
-  display:flex;
+display:flex;
 }
 
 .first{
-  flex: 2; (this is like grid's 1fr 1fr; but simplier)
+flex: 2; (this is like grid's 1fr 1fr; but simplier)
 }
 
 .second{
-  flex: 0.5; //half of the screen.
+flex: 0.5; //half of the screen.
 }
 
 4. External Framework e.g Bootstrap Framework
@@ -148,8 +138,6 @@ gap: 30px;
   </div>
 </div>
 
-
-
     FLEXBOX
 
 Flex-direction: row;
@@ -157,32 +145,29 @@ Flex-direction: row;
 ---------------------------->>>
 flex-basis: 100px; //will set the items inside the container to have 100px width(row)
 
-
 Flex-direciton: column;
 l
-l 
-l 
-l 
-l 
+l
+l
+l
+l
 l  
 V
-v 
+v
 v
 flex-basis: 100px //sets item to have 100px height(column)
 
-FLEX-BASIS 
+FLEX-BASIS
 Targets the items instead of parents.
 
-flex-wrap: nowrap; = align-items //works 
+flex-wrap: nowrap; = align-items //works
 
 flex-wrap: wrap; = align-content // works
 
-
-FLEX: 1 1 0;   ==== SHORTER VERSION FLEX: 1;
+FLEX: 1 1 0; ==== SHORTER VERSION FLEX: 1;
 FLEX = GROW SHRINK BASIS;
 
 flex: 0 0 400px;
-
 
     GRID LAYOUT
 
@@ -191,17 +176,17 @@ grid-column: span 2 //It means that it will occupy 2 spaces in the column
 which is short For
 
 grid-column-start: 1; which line the grid will start from.
-grid-column-end: 3; //where the content will end 
+grid-column-end: 3; //where the content will end
 
 so basically its occupying two spaces
 
-1 (here) 2 (and here) 3     4     -1
+1 (here) 2 (and here) 3 4 -1
 
 one thing to take note is that the very right is -1 incase you want something to fill the whole screen.
 
 You can do the same in ROW
 
-  MOVING A CONTENT
+MOVING A CONTENT
 
 Now in order to move a content somwhere you can use
 
@@ -210,27 +195,25 @@ grid-column-end: 3;
 grid-row-start: 2;
 grid-row-end: 3;
 
-1      2      3   4   -1
+1 2 3 4 -1
 
-
-2   
-   its here
-   column 1-3
-   row 2-3  
+2  
+ its here
+column 1-3
+row 2-3  
 3
-
 
 You can also shorten it to
 
 grid-area: row-start / column-start / row-end / column-end;
-grid-area: 2 / 1 / 3 / 3;   
+grid-area: 2 / 1 / 3 / 3;
 
     BOOTSTRAP NOTATION
 
-Notation 
-  Display utility classes that apply to all breakpoints, from xs to xxl, have no breakpoint abbreviation in them. 
-  This is because those classes are applied from min-width: 0; and up, and thus are not bound by a media query. 
-  The remaining breakpoints, however, do include a breakpoint abbreviation.
+Notation
+Display utility classes that apply to all breakpoints, from xs to xxl, have no breakpoint abbreviation in them.
+This is because those classes are applied from min-width: 0; and up, and thus are not bound by a media query.
+The remaining breakpoints, however, do include a breakpoint abbreviation.
 
 As such, the classes are named using the format:
 
@@ -251,13 +234,12 @@ flex
 inline-flex
 The display values can be altered by changing the display values defined in $utilities and recompiling the SCSS.
 
-The media queries affect screen widths with the given breakpoint or larger. 
+The media queries affect screen widths with the given breakpoint or larger.
 For example, .d-lg-none sets display: none; on lg, xl, and xxl screens.
 
+CLASS NAMES IN BOOTSTRAP
 
-CLASS NAMES IN BOOTSTRAP 
-
-{Property}-{sides}-{size} for xs 
+{Property}-{sides}-{size} for xs
 {Property}-{sides}{breakpoint}-{size} for sm, md, lg, xl, and xxl.
 
 property is
@@ -265,25 +247,26 @@ property is
 m - margin
 p - padding
 
-sides is 
+sides is
 
-t - top 
-b - bottom 
-s - start 
-e - end 
+t - top
+b - bottom
+s - start
+e - end
 x - classes that sets both *-left and -*right
 y - classes that sets both *-top and -*bottom
 
-size 
+size
 
 0-5 and auto
 
-example 
+example
+
  <div class="col mb-3">
 
- margin bottom 3
+margin bottom 3
 
-  DARK MODE
+DARK MODE
 
   <!doctype html>
 <html lang="en" data-bs-theme="dark"> <<<<<<----------- this changes the website to dark mode
@@ -301,57 +284,53 @@ example
 
 You can find bootstrap template for your website online for free.
 
-
     BOX MODEL
 
 Every HTML element is a box made of 4 layers:
 
 Content (the actual text/image)
-    |
+|
 Padding (space between content and border)
-    |
+|
 Border (the visible edge)
-    |
+|
 Margin (space outside the border, between other elements)
 
-padding: 10px;  //all sides
-padding: 10px 20px;  //top-bottom left-right
-padding: 10px 20px 10px 20px;  //top right bottom left (clockwise)
+padding: 10px; //all sides
+padding: 10px 20px; //top-bottom left-right
+padding: 10px 20px 10px 20px; //top right bottom left (clockwise)
 
 margin works the same way.
 
-margin: 0 auto;  //centers a block element horizontally
+margin: 0 auto; //centers a block element horizontally
 //0 = no top/bottom margin, auto = equal left-right margin
-
 
     DISPLAY PROPERTY
 
-display: block;  //takes full width, stacks vertically
-display: inline;  //only takes needed width, stays on the same line, CANT set width/height
-display: inline-block;  //stays on same line BUT you CAN set width/height
-display: none;  //hides the element completely
+display: block; //takes full width, stacks vertically
+display: inline; //only takes needed width, stays on the same line, CANT set width/height
+display: inline-block; //stays on same line BUT you CAN set width/height
+display: none; //hides the element completely
 
 //inline-block is the key to putting things side by side before flexbox/grid.
 //you can make cards sit next to each other with inline-block.
 
 .card {
-  display: inline-block;
-  width: 150px;
-  vertical-align: top;  //aligns them at the top instead of baseline
+display: inline-block;
+width: 150px;
+vertical-align: top; //aligns them at the top instead of baseline
 }
 
 //problem: inline-block has a small gap between elements caused by whitespace in HTML.
 //flexbox and grid dont have this problem.
 
-
     VERTICAL-ALIGN
 
-vertical-align: top;  //aligns inline-block elements to the top
-vertical-align: middle;  //aligns to the middle
+vertical-align: top; //aligns inline-block elements to the top
+vertical-align: middle; //aligns to the middle
 
 //only works on inline and inline-block elements.
 //useful when you have a paragraph and a button on the same line.
-
 
     BOX-SHADOW
 
@@ -360,33 +339,31 @@ box-shadow: 0 1px 5px rgba(0,0,0,0.15);
 //gives the floating card effect.
 //rgba(0,0,0,0.15) is black with 15% opacity for a subtle shadow.
 
-box-shadow: 0 1px 6px rgba(0,0,0,0.1);  //Google search bar style
+box-shadow: 0 1px 6px rgba(0,0,0,0.1); //Google search bar style
 
 //format: x-offset y-offset blur-radius color
 
-
     OBJECT-FIT AND OBJECT-POSITION
 
-object-fit: cover;  //crops image to fill the box without stretching
-object-fit: contain;  //fits the whole image inside the box (may leave gaps)
+object-fit: cover; //crops image to fill the box without stretching
+object-fit: contain; //fits the whole image inside the box (may leave gaps)
 
-object-position: center;  //where the crop focuses
+object-position: center; //where the crop focuses
 
 img {
-  width: 200px;
-  height: 200px;
-  object-fit: cover;
-  object-position: center;
-  border-radius: 100px;
+width: 200px;
+height: 200px;
+object-fit: cover;
+object-position: center;
+border-radius: 100px;
 }
 
 //this makes a circular profile picture. object-fit cover is the key
 //so the image doesnt get squished into the square.
 
-border-radius: 10px;  //rounded corners
-border-radius: 100px;  //full circle (if width and height are equal)
-border-radius: 50%;  //also makes circle, works for any size
-
+border-radius: 10px; //rounded corners
+border-radius: 100px; //full circle (if width and height are equal)
+border-radius: 50%; //also makes circle, works for any size
 
     HOVER AND ACTIVE STATES
 
@@ -394,36 +371,35 @@ border-radius: 50%;  //also makes circle, works for any size
 :active = when the element is being clicked
 
 button:hover {
-  background-color: #333;
-  opacity: 0.8;
+background-color: #333;
+opacity: 0.8;
 }
 
 button:active {
-  background-color: gray;
+background-color: gray;
 }
 
 //hover is for visual feedback. active is for click feedback.
 
-
     TRANSITIONS
 
-transition: all 0.2s;  //smoothly animates ALL property changes over 0.2 seconds
+transition: all 0.2s; //smoothly animates ALL property changes over 0.2 seconds
 
 //without transition, hover changes are instant. with it, they fade smoothly.
 
 button {
-  background-color: black;
-  color: white;
-  padding: 10px 20px;
-  transition: all 0.15s;
+background-color: black;
+color: white;
+padding: 10px 20px;
+transition: all 0.15s;
 }
 
 button:hover {
-  padding: 10px 30px;  //button stretches on hover
+padding: 10px 30px; //button stretches on hover
 }
 
 button:active {
-  box-shadow: none;  //shadow disappears when clicked
+box-shadow: none; //shadow disappears when clicked
 }
 
 //you can also target specific properties:
@@ -431,46 +407,42 @@ transition: background-color 0.2s;
 transition: opacity 0.15s;
 transition: box-shadow 0.2s;
 
-
     CURSOR
 
-cursor: pointer;  //shows the hand icon when hovering
+cursor: pointer; //shows the hand icon when hovering
 
 //always add this to clickable elements that arent already links or buttons.
 //buttons have pointer by default but divs and spans dont.
 
-
     OPACITY
 
-opacity: 1;  //fully visible
-opacity: 0.5;  //50% transparent
-opacity: 0;  //invisible but still takes up space
+opacity: 1; //fully visible
+opacity: 0.5; //50% transparent
+opacity: 0; //invisible but still takes up space
 
 //different from display:none which removes the element from the layout entirely.
 
 //commonly used for hover effects:
 .button:hover {
-  opacity: 0.8;
+opacity: 0.8;
 }
-
 
     STYLING INPUTS
 
 input {
-  border: 1px solid gray;
-  border-radius: 5px;
-  padding: 10px 15px;
+border: 1px solid gray;
+border-radius: 5px;
+padding: 10px 15px;
 }
 
 //to remove the default border completely:
 input {
-  border: 0;
-  outline: none;  //removes the blue glow on focus
-  box-shadow: 0 1px 6px rgba(0,0,0,0.1);  //subtle shadow instead
+border: 0;
+outline: none; //removes the blue glow on focus
+box-shadow: 0 1px 6px rgba(0,0,0,0.1); //subtle shadow instead
 }
 
 //this is how Google styles their search bar.
-
 
     GOOGLE FONTS
 
@@ -485,25 +457,23 @@ Step 3: Copy the <link> tag and paste it in your <head>
 Step 4: Use it in CSS
 
 body {
-  font-family: "Montserrat", sans-serif;
+font-family: "Montserrat", sans-serif;
 }
 
 //wght@400;700 means you're loading regular (400) and bold (700) weights.
 //sans-serif is the fallback if the font fails to load.
 
-
     UNIVERSAL SELECTOR RESET
 
-* {
+- {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
-}
+  }
 
-//* selects ALL elements on the page.
+//\* selects ALL elements on the page.
 //this removes default browser spacing and sets a consistent font.
 //most websites start with some version of this reset.
-
 
     NESTED FLEX
 
@@ -514,72 +484,70 @@ body {
 //content flex = column (header on top, text below)
 //header flex = row with space-between (name on left, time on right)
 
-flex-shrink: 0;  //prevents an item from shrinking when the container gets small
+flex-shrink: 0; //prevents an item from shrinking when the container gets small
 //useful for profile pictures that should stay the same size.
-
 
     POSITION
 
-position: static;  //default. element flows normally in the document.
+position: static; //default. element flows normally in the document.
 
-  FIXED
+FIXED
 
-position: fixed;  //stays in place even when you scroll.
+position: fixed; //stays in place even when you scroll.
 
 .header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;  //stretches full width
+position: fixed;
+top: 0;
+left: 0;
+right: 0; //stretches full width
 }
 
 //fixed removes the element from normal flow.
 //the page scrolls but the fixed element stays put.
 //used for: headers, sidebars, floating buttons, modals.
 
-  ABSOLUTE
+ABSOLUTE
 
-position: absolute;  //positions relative to the nearest positioned parent.
+position: absolute; //positions relative to the nearest positioned parent.
 
 .close-btn {
-  position: absolute;
-  top: 5px;
-  right: 5px;
+position: absolute;
+top: 5px;
+right: 5px;
 }
 
 //if no parent has position set, it positions relative to the whole page.
 //IMPORTANT: the parent needs position: relative; for absolute to work relative to it.
 
-  RELATIVE
+RELATIVE
 
-position: relative;  //the element stays in normal flow but you can nudge it.
+position: relative; //the element stays in normal flow but you can nudge it.
 
 //mostly used as a PARENT for absolute children.
 
 .card {
-  position: relative;  //this is the reference point
+position: relative; //this is the reference point
 }
 
 .badge {
-  position: absolute;  //this positions relative to .card
-  top: -10px;
-  right: -10px;
+position: absolute; //this positions relative to .card
+top: -10px;
+right: -10px;
 }
 
 //this is how you make sale badges, close buttons, timestamps on thumbnails, etc.
 
-  INSET SHORTHAND
+INSET SHORTHAND
 
-inset: 0;  //same as top:0; right:0; bottom:0; left:0;
+inset: 0; //same as top:0; right:0; bottom:0; left:0;
 
 //useful for full-screen overlays.
 
 .overlay {
-  position: fixed;
-  inset: 0;
-  background-color: rgba(0,0,0,0.5);
+position: fixed;
+inset: 0;
+background-color: rgba(0,0,0,0.5);
 }
-
 
     Z-INDEX
 
@@ -591,63 +559,61 @@ lower z-index = behind
 //only works on positioned elements (relative, absolute, fixed).
 
 .modal {
-  z-index: 100;
+z-index: 100;
 }
 
 .shade {
-  z-index: 99;
+z-index: 99;
 }
 
 //modal sits on top of the shade because 100 > 99.
-
 
     MODAL (POPUP)
 
 A modal is a box that appears on top of everything with a dark background behind it.
 
 .shade {
-  position: fixed;
-  inset: 0;
-  background-color: rgba(0,0,0,0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+position: fixed;
+inset: 0;
+background-color: rgba(0,0,0,0.5);
+display: flex;
+justify-content: center;
+align-items: center;
 }
 
 .modal {
-  background-color: white;
-  padding: 30px;
-  border-radius: 10px;
+background-color: white;
+padding: 30px;
+border-radius: 10px;
 }
 
 //the shade covers the whole screen and centers the modal using flexbox.
 //rgba(0,0,0,0.5) is black at 50% opacity so you can still see the page behind it.
-
 
     HOVER OVERLAY
 
 //when you hover over a product image, a semi-transparent overlay appears with an "Add to Cart" button.
 
 .product {
-  position: relative;
+position: relative;
 }
 
 .overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 40%;
-  background-color: rgba(0,0,0,0.7);
-  opacity: 0;
-  transition: opacity 0.3s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+position: absolute;
+bottom: 0;
+left: 0;
+right: 0;
+height: 40%;
+background-color: rgba(0,0,0,0.7);
+opacity: 0;
+transition: opacity 0.3s;
+display: flex;
+align-items: center;
+justify-content: center;
 }
 
 .product:hover .overlay {
-  opacity: 1;
+opacity: 1;
 }
 
 //the overlay is always there but invisible (opacity: 0).
