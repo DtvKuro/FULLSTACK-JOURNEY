@@ -139,7 +139,59 @@ EJS Tags
 
 PASSING DATA TO EJS TEMPLATE
 
-Passing data from server to cliend and client to server.
+Passing data from server to client and client to server.
 
-Server to EJS is done
-via: res.render(index.ejs, newVar = var) then <%= newVar %>
+Server to EJS
+is done via:
+
+res.render(index.ejs, newVar = var) then <%= newVar %>
+
+EJS Cannot detect variables so if we want it to check the JS file
+incase the JS forgot to have passing data, EJS can check via
+
+<% if (locals.newVar) %>
+
+the EJS will check for data newVar in the JS
+
+or it can be in the JS File
+
+res.local = {var: 42}
+
+Client to Server is done via forms.
+
+when a user submits a form, the browser sends the data to the server through app.post.
+
+<form action="/submit" method="POST">
+  <input type="text" name="fName">
+  <input type="submit" value="OK">
+</form>
+
+the "name" attribute in the input is the key. so in express you grab it with req.body["fName"].
+without bodyParser (or express.urlencoded) req.body is undefined. you need:
+
+app.use(bodyParser.urlencoded({ extended: true }));
+
+then in your post route you can do whatever with the data and pass it back to EJS:
+
+app.post("/submit", (req, res) => {
+let name = req.body["fName"];
+res.render("index.ejs", { name: name });
+});
+
+so the full loop is:
+Client (form submit) → Server (req.body) → EJS (res.render with data) → Client (sees the result)
+
+CHECKING IF DATA EXISTS IN EJS
+
+when you load the page via app.get, no data was passed. so if you do <%= name %> it crashes because name doesnt exist.
+
+fix: use locals.name to safely check.
+
+<% if (locals.name){ %>
+
+  <h1>Your name is <%= name %></h1>
+<% }else{ %>
+  <h1>Hello! What is your Name?</h1>
+<% } %>
+
+locals is an object that holds all the variables passed to the template. if nothing was passed, locals.name is just undefined instead of throwing an error. its like a safe way to check "did the server send me this?"
