@@ -36,36 +36,6 @@ Then in EJS we can do
 
 ---
 
-EJS TAGS
-
-There are 3 tags you need to know:
-
-<% %> - runs JS but shows nothing on the page. Used for logic like if/else, loops, variable assignments.
-btw this <% %> must show in every js line you use so if you want, you can go one liner.
-
-<% let greeting = "Hello" %>
-<% if (user === "Japs") { %>
-
-  <p>Welcome back!</p>
-<% } %>
-
-<%= %> - runs JS and shows the result on the page. The = means "output this into HTML."
-
-<h1><%= greeting %>, <%= user %>!</h1>  //Output: Hello, Japs!
-<p>2 + 2 = <%= 2 + 2 %></p>  //Output: 2 + 2 = 4
-
-<%- %> - same as <%= %> but doesnt escape HTML. Use when you want to render actual HTML tags.
-
-<%= "<strong>Bold</strong>" %> //Output: &lt;strong&gt;Bold&lt;/strong&gt; (shows as text, doesnt render)
-<%- "<strong>Bold</strong>" %> //Output: Bold (actually renders as bold)
-
-Quick rule:
-Show on page? → <%= %>
-Just logic? → <% %>
-Raw HTML you trust? → <%- %>
-
----
-
 SETUP
 
 npm i ejs express
@@ -157,3 +127,19 @@ Server-side (index.js) - for heavy stuff like DB queries, API calls, auth, compu
 EJS side (.ejs file) - for simple display logic like showing/hiding elements, if/else for what to render.
 
 In the 4.0 project the day check was done both server-side AND in ejs. Either works but doing it server-side keeps the template cleaner. EJS should mostly just display, not compute.
+
+EJS Tags
+
+<%= variable %> JS Output, it can output the variables from backend as a text in the HTML.
+<% console.log("Hello") %> JS Execute, This is not visible in the page and runs in the backend.
+<%- <h1> Hello </h1> %> Render HTML, This is used for when the variable from backend has HTML tags, you can display the variable as pure text in HTML.
+<% % % %> Shows the <% and %>, This is used for when making a website teaching about EJS and you need to show the EJS tags.
+<%# %> Comment, Everything inside is not read.
+<%- include("file.ejs") %> Insert another EJS File.
+
+PASSING DATA TO EJS TEMPLATE
+
+Passing data from server to cliend and client to server.
+
+Server to EJS is done
+via: res.render(index.ejs, newVar = var) then <%= newVar %>

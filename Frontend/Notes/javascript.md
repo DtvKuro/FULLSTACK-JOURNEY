@@ -461,3 +461,36 @@ else {
                     return db;
                 }
 
+    forEach loop
+
+        // forEach is basically a for loop but cleaner
+        // it goes through EVERY element in an array, no index tracking needed
+        // the function inside gets called once per element
+
+        // syntax: array.forEach(function(singleItem) { do something })
+
+        var fruits = ["Apple", "Banana", "Cherry"];
+
+        fruits.forEach(function(fruit) {
+            console.log(fruit);
+        });
+
+        // arrow function version (same thing, shorter)
+        fruits.forEach((fruit) => {
+            console.log(fruit);
+        });
+
+        // you can also get the index if needed
+        fruits.forEach((fruit, index) => {
+            console.log(index + ": " + fruit);
+        });
+
+        // NAMING CONVENTION: use singular of the array name
+        // items.forEach((item) => {})
+        // users.forEach((user) => {})
+
+        // LIMITS:
+        // - can't break or continue (it ALWAYS goes through everything)
+        // - can't loop backwards or skip indices
+        // - for those cases, use a regular for loop
+
