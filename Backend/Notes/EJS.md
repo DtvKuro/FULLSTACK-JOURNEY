@@ -153,9 +153,37 @@ incase the JS forgot to have passing data, EJS can check via
 
 the EJS will check for data newVar in the JS
 
-or it can be in the JS File
+or it can be in the JS File via res.locals
 
-res.local = {var: 42}
+res ONLY exists inside app.get, app.post, app.use, etc. because res is created fresh every time someone visits your site. you cant use res outside of those — it doesnt exist there.
+
+res.locals lets you set variables for EJS without passing them in res.render().
+
+two ways to write it:
+
+// one by one
+res.locals.name = "Japs";
+res.locals.year = 2026;
+
+// or all at once
+res.locals = { name: "Japs", year: 2026 };
+
+both do the same thing. pick whichever.
+
+if you put it inside middleware (app.use), every route after it can use those variables in EJS. so you set it once and its everywhere.
+
+app.use((req, res, next) => {
+res.locals = { year: 2026, siteName: "MyApp" };
+next();
+});
+
+now every res.render() in every route can use <%= year %> and <%= siteName %> without you passing them manually each time.
+
+for one-time stuff that only one route needs, just pass it directly in res.render("index.ejs", { name: name }). dont overcomplicate it.
+
+BUT res.locals in middleware cant use form data. middleware runs BEFORE the route, so it doesnt know what the client submitted yet. its only for stuff you already know — like the year, site name, or a logged-in user from a session.
+
+form data from POST only exists inside that specific app.post route via req.body. if you need that data in other routes later, store it somewhere (variable, database) and grab it from there — not through res.locals middleware.
 
 Client to Server is done via forms.
 
