@@ -223,3 +223,26 @@ fix: use locals.name to safely check.
 <% } %>
 
 locals is an object that holds all the variables passed to the template. if nothing was passed, locals.name is just undefined instead of throwing an error. its like a safe way to check "did the server send me this?"
+
+EJS Partials and Layouts.
+Reusing EJS code.
+
+linking Static files like css on EJS wont work.
+we have to use a middle ware for css to be used.
+
+App.use(express.static("public"));
+
+public -> style
+-> image
+
+the EJS can now detect the location of href in the EJS
+
+Partials
+
+allows user to reduce the code by acting as a template, to not repeat code.
+
+example:
+
+<% -include("header.ejs") %>
+CODING
+<% -include("footer.ejs") %>
